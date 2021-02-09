@@ -1,37 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TodoList from "./TodoList";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "../theme";
 
-const Body = styled.div`
-  text-align: center;
-`;
-
-const NewButton = styled.button`
-  color: whitesmoke;
+const StyledButton = styled.button`
   border-radius: 5px;
   background-color: grey;
+  margin: 5px;
 `;
 
 export default function App() {
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
+  const [theme, setTheme] = useState("light");
 
-  function handleClick() {
+  function themeToggler() {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  }
+
+  function handleClick(e) {
     setToDoList(prev => [...prev, input]);
+    setInput("");
   }
 
   return (
     <>
-      <Body>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <GlobalStyles />
         <h2>To Do List</h2>
+        <div>
+          <button onClick={() => themeToggler()}>theme</button>
+        </div>
         <input
           onChange={e => setInput(e.target.value)}
           type="text"
           placeholder="add item here"
         ></input>
-        <NewButton onClick={handleClick}>add to list</NewButton>
+        <StyledButton theme={darkTheme} onClick={handleClick}>
+          add to list
+        </StyledButton>
         <TodoList toDoList={toDoList} />
-      </Body>
+      </ThemeProvider>
     </>
   );
 }
