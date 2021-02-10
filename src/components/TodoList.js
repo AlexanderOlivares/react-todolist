@@ -1,10 +1,20 @@
-import React, { useState } from "react";
-import ToDoItem from "./ToDoItem";
+import React from "react";
+import ToDo from "./ToDo";
 
-export default function ToDoList(props) {
-  let { toDoList } = props;
-
-  return toDoList.map(element => {
-    return <ToDoItem key={parseInt(Math.random() * 1000)} todo={element} />;
-  });
+export default function TodoList({ list }) {
+  console.log(list);
+  return (
+    <div>
+      {list.map(item => {
+        return (
+          <ToDo
+            key={Math.random() * 1000}
+            id={item.id}
+            task={item.task}
+            complete={item.complete}
+          />
+        );
+      })}
+    </div>
+  );
 }

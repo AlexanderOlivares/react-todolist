@@ -1,0 +1,11 @@
+body {
+  background-color: dodgerblue;
+  text-align: center;
+}
+.strike {
+  text-decoration: line-through;
+}
+
+.todo {
+  cursor: pointer;
+}

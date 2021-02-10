@@ -1,46 +1,42 @@
-import React, { useState } from "react";
-import TodoList from "./TodoList";
-import styled, { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "../theme";
+import React, { useState, useEffect } from "react";
+import "../index.css";
+import Header from "./Header";
+import data from "../data.json";
+import ToDoList from "./ToDoList";
+import ToDoForm from "./ToDoForm";
 
-const StyledButton = styled.button`
-  border-radius: 5px;
-  background-color: grey;
-  margin: 5px;
-`;
+const LOCAL_STORAGE_KEY = "todo-list-todos";
 
 export default function App() {
-  const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const [list, setList] = useState([
+    {
+      id: "",
+      task: "",
+      complete: false,
+    },
+  ]);
 
-  function themeToggler() {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+  function addTask(input) {
+    let listCopy = [...list];
+    listCopy = [...listCopy, { id: list.length, task: input, complete: false }];
+    setList(listCopy);
   }
+  useEffect(() => {
+    const storedList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storedList) {
+      setList(storedList);
+    }
+  }, []);
 
-  function handleClick(e) {
-    setToDoList(prev => [...prev, input]);
-    setInput("");
-  }
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
+  }, [list]);
 
   return (
-    <>
-      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-        <GlobalStyles />
-        <h2>To Do List</h2>
-        <div>
-          <button onClick={() => themeToggler()}>theme</button>
-        </div>
-        <input
-          onChange={e => setInput(e.target.value)}
-          type="text"
-          placeholder="add item here"
-        ></input>
-        <StyledButton theme={darkTheme} onClick={handleClick}>
-          add to list
-        </StyledButton>
-        <TodoList toDoList={toDoList} />
-      </ThemeProvider>
-    </>
+    <div>
+      <h1>To Do List</h1>
+      <ToDoForm addTask={addTask} />
+      <ToDoList list={list} />
+    </div>
   );
 }
