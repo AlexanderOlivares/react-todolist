@@ -14,14 +14,16 @@ export default function ToDoForm({ addTask }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={input}
-        onChange={handleChange}
-        type="text"
-        placeholder="enter task"
-      ></input>
-      <button>add</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={input}
+          onChange={handleChange}
+          type="text"
+          placeholder="enter task"
+        ></input>
+        <button>add</button>
+      </form>
+    </>
   );
 }
