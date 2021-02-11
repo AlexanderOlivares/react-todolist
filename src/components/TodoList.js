@@ -16,7 +16,7 @@ export default function TodoList({ list, toggleChecked }) {
     );
   });
 
-  return <div>{updatedList}</div>;
+  return <div style={{ paddingTop: 5 }}>{updatedList}</div>;
 }
 /*
 

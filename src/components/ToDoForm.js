@@ -22,7 +22,7 @@ export default function ToDoForm({ addTask }) {
           type="text"
           placeholder="enter task"
         ></input>
-        <button>add</button>
+        <button style={{ margin: 5 }}>add</button>
       </form>
     </>
   );
