@@ -59,9 +59,11 @@ export default function App() {
         <h1>To Do List</h1>
         <ToDoForm addTask={addTask} />
         <div>
-          <button onClick={clearFinished}>clear completed</button>
+          <button onClick={clearFinished} style={{ marginTop: 10 }}>
+            clear completed
+          </button>
         </div>
-        <ToDoList list={list} toggleChecked={toggleChecked} />
+        <ToDoList list={list} toggleChecked={toggleChecked} theme={theme} />
       </ThemeProvider>
     </>
   );

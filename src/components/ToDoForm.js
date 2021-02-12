@@ -17,6 +17,7 @@ export default function ToDoForm({ addTask }) {
     <>
       <form onSubmit={handleSubmit}>
         <input
+          style={{ fontSize: "medium" }}
           value={input}
           onChange={handleChange}
           type="text"
