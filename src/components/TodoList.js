@@ -17,5 +17,5 @@ export default function TodoList({ theme, list, toggleChecked }) {
     );
   });
 
-  return <div style={{ paddingTop: 5 }}>{updatedList}</div>;
+  return <div>{updatedList}</div>;
 }

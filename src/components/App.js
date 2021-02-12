@@ -12,7 +12,7 @@ const LOCAL_STORAGE_KEY = "todo-list-todos";
 
 export default function App() {
   const [list, setList] = useState([]);
-  const [theme, setTheme] = useState(darkTheme);
+  const [theme, setTheme] = useState(lightTheme);
 
   function addTask(input) {
     let listCopy = [...list];
@@ -45,7 +45,7 @@ export default function App() {
   }
 
   function handleThemeToggle() {
-    let updatedTheme = theme.background === "black" ? lightTheme : darkTheme;
+    let updatedTheme = theme.background === "#272727" ? lightTheme : darkTheme;
     setTheme(updatedTheme);
   }
 
@@ -53,13 +53,23 @@ export default function App() {
     <>
       <GlobalStyle theme={theme} />
       <ThemeProvider theme={theme}>
-        <button onClick={handleThemeToggle} style={{ marginTop: 10 }}>
-          {theme === lightTheme ? <HiOutlineMoon /> : <FiSun />}
-        </button>
         <h1>To Do List</h1>
         <ToDoForm addTask={addTask} />
-        <div>
-          <button onClick={clearFinished} style={{ marginTop: 10 }}>
+        <div style={{ marginBottom: -10 }}>
+          <button
+            onClick={handleThemeToggle}
+            style={{
+              margin: 15,
+              fontSize: "smaller",
+              paddingTop: 3,
+            }}
+          >
+            {theme === lightTheme ? <HiOutlineMoon /> : <FiSun />}
+          </button>
+          <button
+            onClick={clearFinished}
+            style={{ fontSize: "medium", marginTop: 10 }}
+          >
             clear completed
           </button>
         </div>

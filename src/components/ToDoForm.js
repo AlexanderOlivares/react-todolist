@@ -9,6 +9,9 @@ export default function ToDoForm({ addTask }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (input === "") {
+      return;
+    }
     addTask(input);
     setInput("");
   }
@@ -17,13 +20,13 @@ export default function ToDoForm({ addTask }) {
     <>
       <form onSubmit={handleSubmit}>
         <input
-          style={{ fontSize: "medium" }}
+          style={{ fontSize: "medium", borderRadius: 5 }}
           value={input}
           onChange={handleChange}
           type="text"
           placeholder="enter task"
         ></input>
-        <button style={{ margin: 5 }}>add</button>
+        <button style={{ fontSize: "medium", margin: 5 }}>add</button>
       </form>
     </>
   );
