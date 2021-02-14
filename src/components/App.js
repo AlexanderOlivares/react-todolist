@@ -45,7 +45,7 @@ export default function App() {
   }
 
   function handleThemeToggle() {
-    let updatedTheme = theme.background === "#272727" ? lightTheme : darkTheme;
+    let updatedTheme = theme.background === "#1e212d" ? lightTheme : darkTheme;
     setTheme(updatedTheme);
   }
 
@@ -53,14 +53,21 @@ export default function App() {
     <>
       <GlobalStyle theme={theme} />
       <ThemeProvider theme={theme}>
-        <h1>To Do List</h1>
+        <h1
+          style={{
+            textDecoration: "underline",
+            textDecorationColor: "#a3d2ca",
+            color: "#c1a1d3",
+          }}
+        >
+          To Do List
+        </h1>
         <ToDoForm addTask={addTask} />
         <div style={{ marginBottom: -10 }}>
           <button
             onClick={handleThemeToggle}
             style={{
               margin: 15,
-              fontSize: "smaller",
               paddingTop: 3,
             }}
           >
@@ -68,7 +75,7 @@ export default function App() {
           </button>
           <button
             onClick={clearFinished}
-            style={{ fontSize: "medium", marginTop: 10 }}
+            style={{ fontSize: "medium", padding: 3, marginTop: 10 }}
           >
             clear completed
           </button>
