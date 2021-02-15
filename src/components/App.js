@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import ToDoList from "./ToDoList";
 import ToDoForm from "./ToDoForm";
 import { v4 as uuidv4 } from "uuid";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
 import { GlobalStyle } from "../GlobalStyle";
 import { FiSun } from "react-icons/fi";
 import { HiOutlineMoon } from "react-icons/hi";
 
 const LOCAL_STORAGE_KEY = "todo-list-todos";
+
+const StyledHeader = styled.h1`
+  text-decoration: underline;
+  text-decoration-color: #a3d2ca;
+  color: #c1a1d3;
+`;
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -38,14 +44,14 @@ export default function App() {
     setList(listCopy);
   }
 
-  function clearFinished(e) {
+  function clearCompleted(e) {
     let listCopy = [...list];
     const keepUnchecked = listCopy.filter(item => !item.complete);
     setList(keepUnchecked);
   }
 
   function handleThemeToggle() {
-    let updatedTheme = theme.background === "#1e212d" ? lightTheme : darkTheme;
+    let updatedTheme = theme === darkTheme ? lightTheme : darkTheme;
     setTheme(updatedTheme);
   }
 
@@ -53,29 +59,21 @@ export default function App() {
     <>
       <GlobalStyle theme={theme} />
       <ThemeProvider theme={theme}>
-        <h1
-          style={{
-            textDecoration: "underline",
-            textDecorationColor: "#a3d2ca",
-            color: "#c1a1d3",
-          }}
-        >
-          To Do List
-        </h1>
+        <StyledHeader>To Do List</StyledHeader>
         <ToDoForm addTask={addTask} />
         <div style={{ marginBottom: -10 }}>
           <button
             onClick={handleThemeToggle}
             style={{
               margin: 15,
-              paddingTop: 3,
+              padding: 5,
             }}
           >
             {theme === lightTheme ? <HiOutlineMoon /> : <FiSun />}
           </button>
           <button
-            onClick={clearFinished}
-            style={{ fontSize: "medium", padding: 3, marginTop: 10 }}
+            onClick={clearCompleted}
+            style={{ fontSize: "medium", padding: 5, marginTop: 10 }}
           >
             clear completed
           </button>
