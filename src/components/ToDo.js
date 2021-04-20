@@ -24,6 +24,15 @@ const TodoStyle = styled.div`
     background-color: #a3d2ca;
     color: black;
   }
+  @media screen and (min-width: 480px) {
+    max-width: 80%;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 45%;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 25%;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -33,7 +42,7 @@ const StyledInput = styled.input`
 `;
 
 export default function ToDo({ id, task, complete, toggleChecked, theme }) {
-  function handleChange(e) {
+  function handleChange() {
     toggleChecked(id);
   }
 
@@ -45,7 +54,7 @@ export default function ToDo({ id, task, complete, toggleChecked, theme }) {
           checked={complete}
           onChange={handleChange}
         />
-        {task}
+        <div style={{ padding: 5 }}>{task}</div>
       </label>
     </TodoStyle>
   );

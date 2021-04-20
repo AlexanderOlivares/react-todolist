@@ -2,7 +2,7 @@ import React from "react";
 import ToDo from "./ToDo";
 import { v4 as uuidv4 } from "uuid";
 
-export default function TodoList({ theme, list, toggleChecked }) {
+export default function TodDList({ theme, list, toggleChecked }) {
   const updatedList = list.map(item => {
     return (
       <ToDo
