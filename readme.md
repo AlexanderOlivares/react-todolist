@@ -8,3 +8,5 @@
 - Toggle completed tasks without deleting them
 - Dark / light themes
 - Mobile friendly
+
+Visit the live site [here](https://alexanderolivares.github.io/react-todolist/)
